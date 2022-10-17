@@ -1,0 +1,61 @@
+.calcContainer {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  max-width: 500px;
+  align-items: center;
+  border: solid black 2px;
+  padding: 5%;
+}
+
+.display {
+  border: solid black 1px;
+  height: 50px;
+  width: 400px;
+}
+
+.numContainer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 500px;
+  width: 320px;
+  /* border: solid black 2px; */
+  padding: 5%;
+}
+
+.key {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: solid black 2px;
+  height: 100px;
+  width: 100px;
+}
+
+.clear {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: solid black 2px;
+  height: 100px;
+  width: 100px;
+}
+
+.addTen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: solid black 2px;
+  height: 100px;
+  width: 100px;
+}
+/* .operators {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+} */
