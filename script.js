@@ -1,12 +1,14 @@
 // console.log('hello I work');
 
 let key = document.getElementsByClassName('key');
-
+let lastKey = null;
 const keys = [];
 let number = [];
 let newNumber = undefined;
 let count = 0;
-let holdCount = [0];
+let holdCount = [];
+
+//function to get the HTML Keys assign them values and store the key value pairs into an array of objects.
 const getKeys = () => {
   for (let i = 0; i < key.length; i++) {
     keys.push({
@@ -27,7 +29,7 @@ document.querySelector('.clear').addEventListener('click', function () {
   number = [];
   newNumber = 0;
   count = 0;
-  holdCount = [0];
+  holdCount = [];
   document.querySelector('.number').innerText = '';
 });
 
@@ -38,7 +40,7 @@ for (let i = 0; i < keys.length; i++) {
       .querySelector(`.${keys[i].calcKey}`)
       .addEventListener('click', function () {
         number.push(keyPress);
-        console.log(number);
+        // console.log(number);
         newNumber = Number(number.join(''));
         console.log(newNumber);
         document.querySelector('.number').innerText = newNumber;
@@ -48,69 +50,62 @@ for (let i = 0; i < keys.length; i++) {
       .querySelector(`.${keys[i].calcKey}`)
       .addEventListener('click', function () {
         holdCount.push(newNumber);
-        console.log(`this is the ${keyPress} key`);
-        console.log(holdCount);
-        count = holdCount[0] + holdCount[1];
-        console.log(`this is the ${count}`);
-        holdCount.push(count);
-        holdCount.shift();
-        holdCount.shift();
-        console.log('updated hold count' + holdCount);
+        console.log(`starting with ${holdCount}`);
+        let total = holdCount[1]
+          ? holdCount[0] + holdCount[1]
+          : holdCount[0] + 0;
         newNumber = 0;
         number = [];
-        document.querySelector('.number').innerText = count;
-        return holdCount;
+        holdCount = [total];
+        document.querySelector('.number').innerText = total;
+        console.log(`total is ${total}`);
+
+        //end loop
       });
   } else if (keyPress === '*') {
     document
       .querySelector(`.${keys[i].calcKey}`)
       .addEventListener('click', function () {
-        // holdCount.push(1);
-        console.log(`this is the ${keyPress} key`);
-        console.log(holdCount);
-        count = holdCount[0] * holdCount[1];
-        console.log(`this is the ${count}`);
-        holdCount.push(count);
-        holdCount.shift();
-        holdCount.shift();
-        console.log('updated hold count' + holdCount);
+        holdCount.push(newNumber);
+        console.log(`starting with ${holdCount}`);
+        let total = holdCount[1]
+          ? holdCount[0] * holdCount[1]
+          : holdCount[0] * 1;
         newNumber = 0;
         number = [];
-        document.querySelector('.number').innerText = count;
+        holdCount = [total];
+        document.querySelector('.number').innerText = total;
+        console.log(`total is ${total}`);
       });
   } else if (keyPress === '-') {
     document
       .querySelector(`.${keys[i].calcKey}`)
       .addEventListener('click', function () {
         holdCount.push(newNumber);
-        console.log(`this is the ${keyPress} key`);
-        console.log(holdCount);
-        count = holdCount[0] - holdCount[1];
-        console.log(`this is the ${count}`);
-        holdCount.push(count);
-        holdCount.shift();
-        holdCount.shift();
-        console.log('updated hold count' + holdCount);
+        console.log(`starting with ${holdCount}`);
+        let total = holdCount[1]
+          ? holdCount[0] - holdCount[1]
+          : holdCount[0] - 0;
         newNumber = 0;
         number = [];
-        document.querySelector('.number').innerText = count;
+        holdCount = [total];
+        document.querySelector('.number').innerText = total;
+        console.log(`total is ${total}`);
       });
   } else if (keyPress === '/') {
     document
       .querySelector(`.${keys[i].calcKey}`)
       .addEventListener('click', function () {
-        holdCount.push(1);
-        console.log(`this is the ${keyPress} key`);
-        console.log(holdCount);
-        count = holdCount[0] / holdCount[1];
-        console.log(`this is the ${count}`);
-        holdCount.push(count);
-        holdCount.shift();
-        holdCount.shift();
-        console.log('updated hold count' + holdCount);
+        holdCount.push(newNumber);
+        console.log(`starting with ${holdCount}`);
+        let total = holdCount[1]
+          ? holdCount[0] / holdCount[1]
+          : holdCount[0] / 1;
         newNumber = 0;
         number = [];
-        document.querySelector('.number').innerText = count;
+        holdCount = [total];
+        document.querySelector('.number').innerText = total;
+        console.log(`total is ${total}`);
       });
   }
 }
@@ -120,11 +115,3 @@ function addTen() {
 }
 
 document.querySelector('.addTen').addEventListener('click', addTen);
-
-// }
-
-// document.querySelector(`.${keys[i].calcKey}`).addEventListener('click', function () {
-//   console.log('hi');
-// });
-
-// console.log(keys[9].value, typeof keys[9].value);
